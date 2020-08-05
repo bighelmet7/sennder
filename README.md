@@ -18,7 +18,6 @@
 ```bash
 git clone https://github.com/bighelmet7/sennder.git
 cd sennder/
-docker-compose build
 docker-compose up # the application is configured for a DevelopmentConfig environment.
 ```
 
