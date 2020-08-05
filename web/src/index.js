@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-const apiUrl = "http://localhost:5001/api/v1/movies/";
+const apiUrl = "http://localhost:5000/api/v1/movies/";
 
 ReactDOM.render(
   <React.StrictMode>
