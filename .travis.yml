@@ -12,7 +12,7 @@ env:
     - FLASK_APP=app.py
 
 script:
-    - python -m py.test
+    - python -m pytest
     - coverage run --source '.' --omit=movies/tests/factories.py,studio_ghibli/tests/mocks.py,v1/blueprints.py,sennder/extensions.py,app.py -m py.test
 
 after_success:
