@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    environment:
+        POSTGRES_USER: sennder
+        POSTGRES_PASSWORD: sennder-test # EXAM! MUST BE DONE WITH: DOCKER SECRETS.
+        POSTGRES_DB: sennder
+    ports:
+      - 5432:5432
+    volumes:
+        - ./data/postgres:/var/lib/postgresql/data
+  api:
+    build: .
+    environment:
+      APPLICATION_ENV: sennder.config.DevelopmentConfig
+    command: ["./entrypoint.sh", "db", "5432"]
+    ports:
+      - 5000:5000
+    volumes:
+      - ./logs/sennder:/var/logs/sennder
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-XGET", "http://localhost:5000/ping/"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+  broker:
+    image: rabbitmq:latest
+    hostname: broker
+    ports:
+      - 5672:5672
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "5672"]
+      interval: 3s
+      timeout: 10s
+      retries: 3
+  worker:
+    build: .
+    hostname: worker
+    entrypoint: celery
+    # This should not be done in production because gives sudo to the celery worker.
+    command: -A sennder.tasks:celery worker --beat --loglevel=info -f /var/logs/sennder/celery.logs
+    volumes:
+      - ./logs/celery:/var/logs/sennder
+    depends_on:
+      - broker
+      - api
+    links:
+      - broker
