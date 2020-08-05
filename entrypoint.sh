@@ -16,7 +16,6 @@ done
 if [[ ! -d migrations ]]; then
   flask db init
 fi
-flask db revision --rev-id 6fc66f0218e3
 flask db migrate
 flask db upgrade
 gunicorn -b 0.0.0.0:5001 --access-logfile /var/logs/sennder/sennder.logs --capture-output --enable-stdio-inheritance --log-level debug -w 4 app:app
