@@ -18,13 +18,14 @@
 ```bash
 git clone https://github.com/bighelmet7/sennder.git
 cd sennder/
+docker-compose build
 docker-compose up # the application is configured for a DevelopmentConfig environment.
 ```
 
 ### TODO
 
-- codecov badge ✅
-- travis CI ✅
+- codecov badge
+- travis CI
 - https for api and web
 - API test
 - Worker test
@@ -47,6 +48,9 @@ Main project
 It is based in a Celery worker that every minute is fetching the Studio Ghibli API and writting into the configured Database **(Caution: SQLite could perfom IntegrityError use it only in TestingConfig)**. In the other side we have the API service that is reading all the information from the Database. This service gets the Film and People models and merge them into a JSON response.
 
 Finally the Web service will perfom every 3 seconds a GET request to /api/v1/movies, so the user can feel a real time application.
+
+API: http://localhost:5000/api/v1/movies
+Web: http://localhost:8000/
 
 ### Models
 
