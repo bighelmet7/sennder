@@ -43,11 +43,13 @@ Main project
 |Studio Ghibli|API+---->+Celery Worker+-->+Database <--->API|/api/v1/movies/<---->Web|/movies |
 +-----------------+     +-------------+   +---------+   +-------------------+    +------------+
 ```
-It is based in a Celery worker that every minute is fetching the Studio Ghibli API and writting into the configured Database **(Caution: SQLite could perfom IntegrityError use it only in TestingConfig)**. In the other side we have the API service that read all the information from the Database. This service gets the Film and People models and merge them into a JSON response. Finally the Web service will perfom every 3 seconds a GET request to /api/v1/movies, so the user can feel a real time application.
+It is based in a Celery worker that every minute is fetching the Studio Ghibli API and writting into the configured Database **(Caution: SQLite could perfom IntegrityError use it only in TestingConfig)**. In the other side we have the API service that is reading all the information from the Database. This service gets the Film and People models and merge them into a JSON response.
+
+Finally the Web service will perfom every 3 seconds a GET request to /api/v1/movies, so the user can feel a real time application.
 
 ### Models
 
-First of all it is worth mention that Film and People models are not complete (compare to the information stored in Studio Ghibli DB). The application is requesting the necessary information for both objects.
+First of all it is worth mention that Film and People models are not complete (compare to the information stored in Studio Ghibli DB). The worker is requesting the necessary information for both objects.
 
 - Film contains an ID, title and a backref to People called _peoples_
 - People contains an ID, name and a list of Film called _films_
