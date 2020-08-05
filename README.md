@@ -1,5 +1,7 @@
 # Movie List
 
+[![Build Status](https://travis-ci.com/bighelmet7/sennder.svg?token=qVuyqSjnTjTxdCoTkHDd&branch=master)](https://travis-ci.com/bighelmet7/immfly)
+
 # Challenge
 
 - Develop a Python application which serves a page on localhost:8000/movies/. This page should contain a plain list of all movies from the Ghibli API. For each movie the people that appear in it should be listed.
