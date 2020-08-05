@@ -1,6 +1,6 @@
 # Movie List
 
-[![Build Status](https://travis-ci.com/bighelmet7/sennder.svg?token=qVuyqSjnTjTxdCoTkHDd&branch=master)](https://travis-ci.com/bighelmet7/immfly)
+[![Build Status](https://travis-ci.com/bighelmet7/sennder.svg?token=qVuyqSjnTjTxdCoTkHDd&branch=master)](https://travis-ci.com/bighelmet7/immfly)    [![codecov](https://codecov.io/gh/bighelmet7/sennder/branch/master/graph/badge.svg)](https://codecov.io/gh/bighelmet7/sennder)
 
 # Challenge
 
