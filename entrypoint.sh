@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Entrypoint for our application. Making sure the db is avaible.
 
 set -e
@@ -13,7 +13,10 @@ done
 
 >&2 echo "Postgres is up - executing backend-service"
 
-flask db init
-flask db revision -m "create tables"
+if [[ ! -d migrations ]]; then
+  flask db init
+fi
+flask db revision --rev-id 6fc66f0218e3
+flask db migrate
 flask db upgrade
-gunicorn -b 0.0.0.0:5000 --access-logfile /var/logs/sennder/sennder.logs --capture-output --enable-stdio-inheritance --log-level debug app:app
+gunicorn -b 0.0.0.0:5001 --access-logfile /var/logs/sennder/sennder.logs --capture-output --enable-stdio-inheritance --log-level debug -w 4 app:app
