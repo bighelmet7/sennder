@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 
 RUN chmod 755 entrypoint.sh
 
-EXPOSE 5001
+EXPOSE 5000
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP app.py
