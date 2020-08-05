@@ -1,0 +1,19 @@
+language: python
+
+python:
+    - "3.8"
+
+install:
+    - pip install pytest-cov
+    - pip install codecov
+    - pip install -r requirements.txt
+
+env:
+    - FLASK_APP=app.py
+
+script:
+    - python -m py.test
+    - coverage run --source '.' --omit=movies/tests/factories.py,studio_ghibli/tests/mocks.py,v1/blueprints.py,sennder/extensions.py,app.py -m py.test
+
+after_success:
+    - codecov
