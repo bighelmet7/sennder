@@ -24,8 +24,8 @@ docker-compose up # the application is configured for a DevelopmentConfig enviro
 
 ### TODO
 
-- codecov badge
-- travis CI
+- codecov badge ✅ 
+- travis CI ✅ 
 - https for api and web
 - API test
 - Worker test
