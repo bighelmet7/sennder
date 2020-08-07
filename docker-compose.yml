@@ -31,7 +31,7 @@ services:
     depends_on:
       - db
     healthcheck:
-      test: ["CMD", "curl", "-XGET", "http://localhost:5001/ping/"]
+      test: ["CMD", "curl", "-XGET", "http://localhost:5000/ping/"]
       interval: 5s
       timeout: 10s
       retries: 3
